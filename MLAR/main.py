@@ -6,27 +6,40 @@ import itertools
 if __name__ == '__main__':
     table = readTxt('./MLAR/transactionTable.txt')
     items = getItemSets(table=table)
-    
-    #items = searchItem(table, items,1)
 
     L =  {}
     for l in range(1,4):
         if l==1:
-            items = searchItem(table, items,l)
-            print("")
-            print(items)
+            printTable(table)
+            items = searchItem(table, items,l,minSup=5)
+
             table, minSup = filterTable(table, items, minSup=5, size=l)
             printTable(table)
         else:
-            remainders = getRemainders(items,minSup)
-            remainders = getCombinations(remainders)
-            print("")
+            if l > 2 :
+                items = getCombinations_2(items)
+                items = CombineKeys(items, l)
 
-            items = searchItem(table, remainders, l)
-            print(items)
-            print("")
+                items = searchItem_2(table, items, 2, 3)
+                items = getCombinations_2(items)
+                items = CombineKeys(items, 3)
+                #items = CombineKeys(items,l)
 
-            table, minSup = filterTable(table, items, minSup, size=l)
-            printTable(table)
-            pass
+                table, minSup = filterTable_3(table, items, 3, size=2)
+                printTable(table)
+                items  = searchItem_2(table, items, l, 3)
+
+
+            else:
+                items = getCombinations(items)
+
+                items = searchItem(table, items, l, minSup)
+                print("")
+                items = CombineKeys(items,l)
+
+                table, minSup = filterTable_2(table, items, 3, size=l)
+                printTable(table)
+                items = searchItem_2(table, items, l, 3)
+                pass
+
             
