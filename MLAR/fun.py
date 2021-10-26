@@ -40,8 +40,8 @@ def get_filtered_t_table(trans_table:list, L:dict, l:int, minSup:list) -> list:
             filteredTable.append(items_in_row)
     return filteredTable
 
-def get_candidate_set(L):
-    return list(itertools.combinations(L.keys(),2))
+def get_candidate_set(L,l):
+    return list(itertools.combinations(L.keys(),l)) #2
 
 def get_subset_support(Ck, table, minSup, l):
     subsets = {k:0 for k in Ck}
