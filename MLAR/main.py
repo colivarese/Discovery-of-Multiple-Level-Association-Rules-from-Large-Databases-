@@ -22,11 +22,9 @@ if __name__ == '__main__':
             subsets = get_subset_support(Ck = candidate_set, table=table, minSup=minSup[l], l=l)
             LL[(l,k)] = {k:v for k,v in subsets.items() if v >= minSup[l]}
 
+    
     printLL(LL)
 
-    a = {('11', '12'): 4, ('11', '21'): 3, ('11', '22'): 4, ('12', '22'): 3, ('21', '22'): 3}
-    print(list(itertools.combinations(a, 1)))
-    #print list(itertools.product([1,2], repeat=3))
-
+  
 
             
